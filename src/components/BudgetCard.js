@@ -6,7 +6,7 @@ import { currencyFormatter } from '../utils';
 
 
 // functional component
-const BudgetCard = ( { name, amount, max, gray } ) => {
+const BudgetCard = ( { name, amount, max, gray, onAddExpenseClick } ) => {
 // vanilla js section
 
 const classNames = [];
@@ -16,17 +16,10 @@ if (amount > max) {
     classNames.push("bg-light")
 }
 
-const getProgressBarVariant = (amount, max) => {
-    const ratio = amount / max;
-    if (ratio < .5) return "primary"
-    if (ratio < .75) return "warning"
-    return "danger"
-}
-
 
 // jsx section
   return (
-    <div style={{width: '450px'}}>
+    <div>
         <Card className={classNames.join(" ")}>
             <Card.Body>
                 <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
@@ -46,7 +39,7 @@ const getProgressBarVariant = (amount, max) => {
                     now={amount}
                 />
                 <Stack direction="horizontal" gap="2" className="mt-4">
-                    <Button variant="outline-primary" className="ms-auto">Add Expense</Button>
+                    <Button variant="outline-primary" className="ms-auto" onClick={onAddExpenseClick}>Add Expense</Button>
                     <Button variant="outline-secondary">View Expenses</Button>
                 </Stack>
             </Card.Body>
@@ -54,6 +47,14 @@ const getProgressBarVariant = (amount, max) => {
     </div>
   )
 }
+
+const getProgressBarVariant = (amount, max) => {
+    const ratio = amount / max;
+    if (ratio < .5) return "primary"
+    if (ratio < .75) return "warning"
+    return "danger"
+}
+
 
 // export functional component
 export default BudgetCard;
