@@ -9,6 +9,7 @@ export const UNCATEGORIZED_BUDGET_ID = "Uncategorized"
 export const useBudgets = () => {
     return useContext(BudgetsContext)
 }
+// ^ this line of code is exported as a function called, useBudgets, and is to use this entire context file of BudgetsContext.js, as it was created a useContext file on line 7 with React.createContext()
 
 export const BudgetsProvider = ( { children } ) => {
     const [budgets, setBudgets] = useLocalStorage("budgets", []);
